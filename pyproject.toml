@@ -12,7 +12,7 @@ keywords = ["game-of-life", "conway", "python"]
 pygol = "pygol.app:main"
 
 [tool.poetry.dependencies]
-python = "^3.8.5"
+python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 pytest-cov = "^5.0.0"
