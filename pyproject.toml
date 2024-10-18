@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "pygol"
+version = "0.0.1"
+description = "A simple CLI simulator for Conway's Game of Life."
+authors = ["Connor Young <coyoung@umich.edu>"]
+readme = "README.md"
+homepage = "https://github.com/connoryo"
+repository = "https://github.com/connoryo"
+keywords = ["game-of-life", "conway", "python"]
+
+[tool.poetry.scripts]
+pygol = "pygol.app:main"
+
+[tool.poetry.dependencies]
+python = "^3.8.5"
+
+[tool.poetry.dev-dependencies]
+pytest-cov = "^5.0.0"
+black = "^23.0.0"
+isort = "^5.0.0"
+Flake8-pyproject = "^1.2.3"
+mypy = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 128
+target-version = ['py38']
+skip-string-normalization = true
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | env
+    | _build
+    | buck-out
+    | build
+    | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 128
+multi_line_output = 3
+skip = ["env", "dist", "build"]
+
+[tool.flake8]
+max-line-length = 128
+max-complexity = 11
+exclude = ["build", "dist", "env"]
+extend-ignore = [
+    "E203",  # whitespace before ':'
+    "W503",  # line break before binary operator
+]
+
+[tool.mypy]
+python_version = "3.8"
+ignore_missing_imports = true
+warn_unused_configs = true
+files = ["src/", "tests/"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "--strict-markers --cov=pygol --cov-report=term-missing" # or --cov-report=html
+testpaths = ["tests/*"]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+omit = [
+    "tests/*",
+    "*/migrations/*",
+]
