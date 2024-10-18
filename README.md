@@ -20,7 +20,7 @@ The program includes a number of starting boards to choose from, as well as supp
 
 ## Installation
 
-- Download the `pygol-[version].whl` file from `dist` into your Python project.
+- Download the `pygol-[version].whl` file from the [latest release](https://github.com/connoryo/pygol/releases/latest) into your Python project.
 - Create a new virtual environment, or activate an existing one.
 
 ```bash
