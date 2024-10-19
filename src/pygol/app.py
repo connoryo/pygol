@@ -48,8 +48,11 @@ def pygol(stdscr, args):
         board_file = args.input if args.board == "custom" else os.path.join(boards_dir, f"{args.board}.txt")
         board = Board(wrap_around=args.wrap_around).load_board_from_file(board_file)
 
+    previous_frame = None
     while True:
-        draw_frame(stdscr, str(board))
+        current_frame = str(board)
+        draw_frame(stdscr, str(board), previous_frame)
+        previous_frame = current_frame
         board.iterate_state()
         sleep(frame_time)
 
