@@ -14,22 +14,26 @@ DEFAULT_FRAME_TIME = 0.1
 DEFAULT_ALIVE_PROPORTION = 0.5
 
 
-def draw_frame(stdscr, text: str):
-    stdscr.clear()
+def draw_frame(stdscr, current_frame: str, previous_frame: str = None):
     height, width = stdscr.getmaxyx()
+    lines = current_frame.splitlines()
 
-    lines = text.splitlines()
+    if previous_frame:
+        prev_lines = previous_frame.splitlines()
+    else:
+        prev_lines = [""] * len(lines)  # Dummy empty frame
 
     if len(lines) > height:
         lines = lines[:height]
 
-    for i, line in enumerate(lines):
-        if len(line) > width:  # Truncate each line if it's too wide
-            line = line[:width]
-        try:
-            stdscr.addstr(i, 0, line)
-        except curses.error:
-            pass
+    for i, (line, prev_line) in enumerate(zip(lines, prev_lines)):
+        if line != prev_line:  # Only redraw lines that have changed
+            if len(line) > width:
+                line = line[:width]
+            try:
+                stdscr.addstr(i, 0, line)
+            except curses.error:
+                pass
     stdscr.refresh()
 
 
