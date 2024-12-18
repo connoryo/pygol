@@ -4,8 +4,8 @@ version = "0.0.1"
 description = "A simple CLI simulator for Conway's Game of Life."
 authors = ["Connor Young <coyoung@umich.edu>"]
 readme = "README.md"
-homepage = "https://github.com/connoryo"
-repository = "https://github.com/connoryo"
+homepage = "https://github.com/connoryo/pygol/"
+repository = "https://github.com/connoryo/pygol/"
 keywords = ["game-of-life", "conway", "python"]
 
 [tool.poetry.scripts]

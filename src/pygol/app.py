@@ -2,6 +2,7 @@ import argparse
 import curses
 import os
 from time import sleep
+from typing import Optional
 
 from .board import Board
 
@@ -14,7 +15,7 @@ DEFAULT_FRAME_TIME = 0.1
 DEFAULT_ALIVE_PROPORTION = 0.5
 
 
-def draw_frame(stdscr, current_frame: str, previous_frame: str = None):
+def draw_frame(stdscr, current_frame: str, previous_frame: Optional[str] = None):
     height, width = stdscr.getmaxyx()
     lines = current_frame.splitlines()
 
@@ -51,7 +52,7 @@ def pygol(stdscr, args):
     previous_frame = None
     while True:
         current_frame = str(board)
-        draw_frame(stdscr, str(board), previous_frame)
+        draw_frame(stdscr, current_frame, previous_frame)
         previous_frame = current_frame
         board.iterate_state()
         sleep(frame_time)
